@@ -1,0 +1,41 @@
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+<script src="assets/jquery-ui-extensions/src/autocomplete/jquery.ui.autocomplete.html.js"></script>
+<link href="assets/css/styles.css"/>
+
+<h1>Chromothripsis Explorer</h1>
+
+<div class="ui-widget">
+  <label for="pdfs">pdfs: </label>
+  <input id="pdfs">
+</div>
+
+<script>
+var availablePdfs = [];
+$.ajax({
+    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+    url: '/ChromothripsisExplorer/pdfs/',
+    success: function (data) {
+       //Gather all pdf filenames
+       $(data).find("a:contains(" + ".pdf" + ")").each(function () {
+           
+	var filename = "<a href='" + this.baseURI + "pdfs/" + this.innerHTML + "'>" + this.innerHTML + "</a>"
+	   availablePdfs.push(
+		{
+		  label: filename + "<div class='box'><iframe src='" + this.baseURI + "pdfs/" + this.innerHTML  + "' width = '500px' height = '500px'></iframe></div>",
+		  value: this.innerHTML
+		});
+       });
+     }
+  });
+$( "#pdfs" ).autocomplete({
+      source: availablePdfs,
+      html: true
+    });
+</script>
