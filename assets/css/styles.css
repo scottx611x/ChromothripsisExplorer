@@ -1,10 +1,59 @@
-.box{
-    display: none;
-    width: 100%;
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+body { font-family: sans-serif;}
+
+
+.container {
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    text-align: center;
+    max-width: 100%;
+}
+#searchResults {
+    float: right;
+}
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
 }
 
-a:hover + .box,.box:hover{
-    display: block;
-    position: relative;
-    z-index: 100;
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 25%;
+}
+
+.grid-item {
+  height: 500px;
+  float: left;
+  padding-bottom: 10px;
+}
+
+.grid-item object {
+  height: 100%;
+  border-radius: 25px;
+}
+
+.data-item object.link {
+    display: none;
+}
+.data-item:hover {
+    .data-item object.link {
+        display: inline-block;
+        background-color: pink;
+    }
 }
