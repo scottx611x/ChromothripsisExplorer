@@ -1,0 +1,3 @@
+[submodule "assets/jquery-ui-extensions"]
+	path = assets/jquery-ui-extensions
+	url = https://github.com/scottgonzalez/jquery-ui-extensions
